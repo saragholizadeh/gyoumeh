@@ -66,7 +66,7 @@ exports.getPost = async (req, res) => {
   var similarPosts = await Tutarial.find({ category: req.params.category, title: {$ne: req.params.postTitle}})
     .sort({ $natural: -1 })
     .limit(6);
-
+     
 
   var posts = [];
   for (let i = 0; i < similarPosts.length; i++) {
