@@ -12,6 +12,10 @@ const auth = require("./src/apps/routes/auth");
 const user = require("./src/apps/routes/user");
 const author = require("./src/apps/routes/author");
 
+//middlwares
+const setCurrentUser = require("./src/middlewares/setCurrentUser");
+const categories = require("./src/middlewares/getCategories");
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cookieParser());
@@ -35,6 +39,8 @@ app.use(
   })
 );
 
+app.use(setCurrentUser);
+app.use(categories);
 
 app.use("/auth", auth);
 app.use("/", user);

@@ -1,30 +1,58 @@
 <header class="">
     <nav class="navbar navbar-expand-lg">
       <div class="container">
-        <a class="navbar-brand" href="/"><h2>گیومه<em>.</em></h2></a>
+        <% if (user) {%>
+
+        <img src="../../../../public/assets/images/avatar.png" alt="Avatar" class="avatar" style=" vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;"
+        >
+
+        <% } else { %>
+          <div class="userLogin button js-userLogin" style="cursor: pointer;
+          display: inline-block;
+          min-width: 30px;
+          text-align: center;
+          vertical-align: middle;">
+          <span class="btn" style="align-items: center;
+          display: inline-flex; ">
+          <a class="btn-text" href="/auth/login" title="ورود به حساب کاربری" style="color: #107abe!important; padding-right: 20px;">ورود</a>
+          <a class="btn-text navbar-signup-button" href="/auth/register" title="ثبت نام در ویرگول" style="    background-color: #107abe;
+          border-radius: 5px;
+          color: #fff!important;
+          margin-right: 15px;
+          padding: 5px 25px;">ثبت نام</a>
+        </span>
+      </div>
+        <% } %>
+
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
-              <a class="nav-link" href="/">خانه
-                <span class="sr-only">(اینجایی)</span>
+              <a class="nav-link" href="/" style="margin-bottom:-10px;">گیومه
               </a>
             </li>
             <li class="nav-item dropdown" data-toggle="dropdown">
-              <a class="nav-link"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">دسته‌بندی‌ها</a>
+              <a class="nav-link"  data-toggle="dropdown"  >دسته‌بندی‌ها</a>
                 <ul class="dropdown-menu" style="text-align-last:center;">
-                    <li><a class="dropdown-item" href="/category/برنامه‌نویسی" >برنامه‌نویسی</a></li>
-                    <li><a class="dropdown-item" href="/category/بلاکچین" data-hover=" ">بلاکچین</a></li>
+                  <% categories.forEach(function(category){%> 
+
+                    <li><a class="dropdown-item" href="/category/<%= category %>" > <%= category %></a></li>
+                    <!-- <li><a class="dropdown-item" href="/category/بلاکچین" data-hover=" ">بلاکچین</a></li>
                     <li><a class="dropdown-item" href="/category/طراحی و گرافیک" data-hover=" ">طراحی و گرافیک</a></li>
                     <li><a class="dropdown-item" href="/category/هوش مصنوعی" data-hover=" ">هوش مصنوعی</a></li>
                     <li><a class="dropdown-item" href="/category/امنیت و شبکه" data-hover=" ">امنیت و شبکه</a></li>
-                    <li><a class="dropdown-item" href="/category/تولید محتوا و سئو" data-hover=" ">تولید محتوا و سئو</a></li>
-                </ul>
+                    <li><a class="dropdown-item" href="/category/تولید محتوا و سئو" data-hover=" ">تولید محتوا و سئو</a></li> -->
+                    <% }) %>
+
+                  </ul>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#">نویسندگان</a>
+              <a class="nav-link" href="#">داغ‌ترین‌ها</a>
             </li>
            
           </ul>

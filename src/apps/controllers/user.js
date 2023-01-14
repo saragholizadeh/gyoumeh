@@ -6,6 +6,7 @@ const Category = db.categories;
 const DateConverter = require("../../helpers/date-converter");
 
 exports.main = async (req, res) => {
+  
   var posts = await Tutarial.find().sort({ $natural: -1 }).limit(10);
   bodyPosts = posts.splice(0, 5);
   var solarDate = new DateConverter();
@@ -39,7 +40,7 @@ exports.main = async (req, res) => {
     titles.push(obj);
   }
 
-  res.render("pages/index", { posts: postsArr, titles });
+  res.render("pages/index", { posts: postsArr, titles});
 };
 
 exports.getPost = async (req, res) => {
