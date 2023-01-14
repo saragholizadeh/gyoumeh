@@ -1,0 +1,12 @@
+node_modules
+.dockerignore
+package-lock.json
+yarn.lock
+DS_Store
+Dockerfile.dev
+.env
+*.log
+dist
+.vscode
+.idea
+coverage

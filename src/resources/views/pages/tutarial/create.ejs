@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>ایجاد مقاله جدید</title>
+    <%- include('../../partials/head'); %>
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="../../../../../public/assets/css/bootstrap.min.css"
+    />
+
+    <!-- Style -->
+    <link rel="stylesheet" href="../../../../../public/assets/css/style.css" />
+  </head>
+
+  <body>
+    <!-- ***** Preloader Start ***** -->
+    <%- include('../../partials/preloader'); %>
+
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <%- include('../../partials/header'); %>
+    
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text">
+      <section class="new-post">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <div
+                class="text-content"
+                style="text-align: center; margin-top: 30px"
+              >
+                <h2>ایجاد مقاله جدید در گیومه</h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+    <!-- Banner Ends Here -->
+
+    <div class="content">
+      <div class="container">
+        <div class="row align-items-stretch no-gutters contact-wrap" style="direction:rtl;  text-align: right;">
+          <div class="col-md-12" >
+            <div class="form h-100">
+              <% if (messages.error) { %>
+                <div
+                  class="alert alert-danger alert-dismissible fade show"
+                  role="alert"
+                >
+                  <%- messages.error %>
+                 
+                </div>
+                <% } %>
+              <form
+                class="mb-5"
+                enctype="multipart/form-data"
+                method="post"
+                id="contactForm"
+                name="contactForm"
+                action="/a/create"
+              >
+                <div class="row">
+                  <div class="col-md-6 form-group mb-3">
+                    <label for="title" class="col-form-label">عنوان</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="title"
+                      id="title"
+                      value="<%= value.data.title %>"
+                      placeholder="عنوان مقاله شما"
+                    />
+                  </div>
+                  <div class="row">
+                    <div class="col-md-12 form-group mb-3">
+                      <label for="category" class="col-form-label"
+                        >دسته بندی</label
+                      >
+                      <select 
+                        class="custom-select"
+                        id="category"
+                        name="category"
+                        style="text-align: center;"
+                      >
+                        <option selected value="">انتخاب کنید..</option>
+                        <option value="1">برنامه‌نویسی</option>
+                        <option value="2">بلاکچین</option>
+                        <option value="3">طراحی و گرافیک</option>
+                        <option value="4">هوش مصنوعی</option>
+                        <option value="5">امنیت و شبکه</option>
+                        <option value="6">تولید محتوا و سئو</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6 form-group mb-3">
+                    <label for="tags" class="col-form-label">تگ ها</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="tags"
+                      id="tags"
+                      value="<%= value.data.tags %>"
+                      placeholder="تگ هارا میتوانید با فاصله یا ویرگول (,) جدا کنید"
+                    />
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 form-group mb-3">
+                    <label for="body" class="col-form-label">متن مقاله</label>
+                    <textarea
+                      class="form-control"
+                      name="body"
+                      id="body"
+                      cols="30"
+                      rows="10"
+                      
+                      placeholder="شروع به نوشتن کنید ..."
+                    ><%= value.data.body %></textarea>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="button_outer">
+                    <div class="btn_upload">
+                      <input type="file" id="upload_file" name="upload_file" />
+                      آپلود عکس
+                    </div>
+                    <div class="processing_bar"></div>
+                    <div class="success_box"></div>
+                  </div>
+                  <div class="error_msg"></div>
+                  <div class="uploaded_file_view" id="uploaded_view">
+                    <span class="file_remove">X</span>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-md-12 form-group">
+                    <input
+                      type="submit"
+                      value="ثبت"
+                      class="btn btn-primary rounded-0 py-2 px-4"
+                    />
+                    <span class="submitting"></span>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer><%- include('../../partials/footer'); %></footer>
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+    <script>
+      var btnUpload = $("#upload_file"),
+        btnOuter = $(".button_outer");
+      btnUpload.on("change", function (e) {
+        var ext = btnUpload.val().split(".").pop().toLowerCase();
+        if ($.inArray(ext, ["gif", "png", "jpg", "jpeg"]) == -1) {
+          $(".error_msg").text("Not an Image...");
+        } else {
+          $(".error_msg").text("");
+          btnOuter.addClass("file_uploading");
+          setTimeout(function () {
+            btnOuter.addClass("file_uploaded");
+          }, 3000);
+          var uploadedFile = URL.createObjectURL(e.target.files[0]);
+          setTimeout(function () {
+            $("#uploaded_view")
+              .append('<img src="' + uploadedFile + '" />')
+              .addClass("show");
+          }, 3500);
+        }
+      });
+      $(".file_remove").on("click", function (e) {
+        $("#uploaded_view").removeClass("show");
+        $("#uploaded_view").find("img").remove();
+        btnOuter.removeClass("file_uploading");
+        btnOuter.removeClass("file_uploaded");
+      });
+    </script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="../../../../public/assets/js/custom.js"></script>
+    <script src="../../../../public/assets/js/owl.js"></script>
+    <script src="../../../../public/assets/js/slick.js"></script>
+    <script src="../../../../public/assets/js/isotope.js"></script>
+    <script src="../../../../public/assets/js/accordions.js"></script>
+
+   
+  </body>
+</html>

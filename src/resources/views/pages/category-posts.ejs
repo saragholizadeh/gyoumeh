@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%= category %></title>
+ 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="TemplateMo">
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../../../public/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="../../../../public/assets/css/templatemo-stand-blog.css">
+    <link rel="stylesheet" href="../../../../public/assets/css/owl.css">
+<!--
+
+
+  </head>
+
+  <body>
+    <!-- ***** Preloader Start ***** -->
+    <%- include('../partials/preloader'); %>
+
+    <!-- ***** Preloader End ***** -->
+
+    <!-- Header -->
+    <%- include('../partials/header'); %>
+
+    <!-- Banner Starts Here -->
+    <div class="heading-page header-text" style="background-color: white">
+      <section
+        class="page-heading"
+        style="background-image: url(../../../../<%= categoryImage %>)"
+      >
+        <div class="container" style="text-align: right">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="text-content">
+                <h2 style="color: rgba(0, 0, 0, 0.856)"><%= category %></h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- Banner Ends Here -->
+
+     
+    <section class="blog-posts grid-system" >
+      <div class="container" style="width: 100%; display: flex;">
+        <div class="row " style="margin:auto;">
+            <div class="all-blog-posts " >
+              <div class="row " >
+                <% posts.forEach(function(post){%>
+
+                <div class="col-lg-6 card" style="flex: 0 0 30%; margin-left: 10px; margin-bottom: 10px; width: 1200px; ">
+                  <div class="blog-post " style="background-color: white; ">
+                    <div class="blog-thumb">
+                      <img src="\<%= post.image %>" alt=""  style=" margin-top: 10px; height: 220px; margin-bottom: 12px;   float: left;
+                      " />
+                    </div>
+                    <div class="down-content"  style=" text-align: center; direction: rtl; padding: 10px;">
+                      <!-- <span><%= post.title %></span> -->
+                      <a href="/posts/<%= post.category %>/<%= post.title %>" style ="text-align: center;"
+                        ><h4 style="color: #f48840;"><%= post.title %></h4></a
+                      >
+                      <ul class="post-info">
+                        <li><a href="#"><%= post.author %></a></li>
+                        <li><a href="#"><%= post.date %></a></li>
+                        <li><a href="#"><%= post.comments %></a></li>
+                      </ul>
+                      <p style= "font-size: 16px;" ><%= post.body %></p>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-lg-12"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <% }) %>
+              </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <footer><%- include('../partials/footer'); %></footer>
+
+    <!-- Bootstrap core JavaScript -->
+    <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
+    <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Additional Scripts -->
+    <script src="../../../../public/assets/js/custom.js"></script>
+    <script src="../../../../public/assets/js/owl.js"></script>
+    <script src="../../../../public/assets/js/slick.js"></script>
+    <script src="../../../../public/assets/js/isotope.js"></script>
+    <script src="../../../../public/assets/js/accordions.js"></script>
+
+    <script language="text/Javascript">
+      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
+      function clearField(t) {
+        //declaring the array outside of the
+        if (!cleared[t.id]) {
+          // function makes it static and global
+          cleared[t.id] = 1; // you could use true and false, but that's more typing
+          t.value = ""; // with more chance of typos
+          t.style.color = "#fff";
+        }
+      }
+    </script>
+  </body>
+</html>
