@@ -3,6 +3,13 @@
   <head>
     <title>ورود به گیومه</title>
     <%- include('../../partials/head'); %>
+    <style>
+      ul li {
+        margin-bottom: 15px;
+        padding-bottom: 15px;
+        border-bottom: 1px solid #eee;
+      }
+    </style>
   </head>
 
   <body>
@@ -14,110 +21,150 @@
     <!-- Header -->
     <%- include('../../partials/header'); %>
 
-    <!-- Page Content -->
-    <!-- Page Content -->
-    <!-- Banner Starts Here -->
-    <div class="heading-page header-text">
-      <section class="page-heading">
-        <div class="container">
-          <div class="row">
-            <div class="col-lg-12">
-              <div class="text-content"></div>
-            </div>
+
+
+    <div style="display: flex; margin: auto">
+      <div class="row" style="margin: auto; width: 1800px">
+        <img
+          style="width:40%; margin: auto"
+          src="../../../../../public/assets/images/login.png"
+          alt=""
+        />
+
+        <div style="margin-top: 150px; width: 40%">
+          <% if (messages.error) { %>
+          <div
+            class="alert alert-danger alert-dismissible fade show"
+            role="alert"
+            style="width: 382px"
+          >
+            <%- messages.error %>
           </div>
-        </div>
-      </section>
-    </div>
+          <% } %>
 
-    <!-- Banner Ends Here -->
+          <form
+            id="contact"
+            action="/auth/login"
+            method="post"
+            style="margin: auto"
+          >
+            <div class="row" style="display: block">
+              <div class="col-md-6 col-sm-12" style="direction: rtl">
+                <fieldset>
+                  <input
+                    style="
+                      width: 100%;
+                      height: 46px;
+                      border: 1px solid #eee;
+                      font-size: 13px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                      color: #7a7a7a;
+                      outline: none;
+                      padding: 0px 15px;
+                      margin-bottom: 30px;
+                      border-radius: 5px;
+                    "
+                    name="email"
+                    type="text"
+                    id="email"
+                    placeholder="ایمیل"
+                  />
+                </fieldset>
+              </div>
+              <div class="col-md-6 col-sm-12" style="direction: rtl">
+                <fieldset>
+                  <input
+                    style="
+                      width: 100%;
+                      height: 46px;
+                      border: 1px solid #eee;
+                      font-size: 13px;
+                      text-transform: uppercase;
+                      font-weight: 500;
+                      color: #7a7a7a;
+                      outline: none;
+                      padding: 0px 15px;
+                      margin-bottom: 30px;
+                      border-radius: 5px;
+                    "
+                    name="password"
+                    type="password"
+                    id="password"
+                    placeholder="رمز عبور"
+                  />
+                 
+                </fieldset>
+              </div>
 
-    <section class="contact-us">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12">
-            <div class="down-contact">
-              <div class="row">
-                <div class="col-lg-8">
-                  <div class="sidebar-item contact-form">
-                    <div class="sidebar-heading">
-                      <h2> ورود به گیومه</h2>
-                    </div>
-                    <div class="content">
-                      <% if (messages.error) { %>
-                        <div
-                          class="alert alert-danger alert-dismissible fade show"
-                          role="alert"
-                        >
-                          <%- messages.error %>
-                         
-                        </div>
-                        <% } %>
-                      <form id="contact" action="/auth/login"  method="post">
-                        <div class="row">
-                          <div class="col-md-6 col-sm-12">
-                            <fieldset>
-                              <input
-                                name="email"
-                                type="text"
-                                id="email"
-                                placeholder="ایمیل"
-                              />
-                            </fieldset>
-                          </div>
-                          <div class="col-md-6 col-sm-12">
-                            <fieldset>
-                              <input
-                                name="password"
-                                type="password"
-                                id="password"
-                                placeholder="رمز عبور"
-                              />
-                            </fieldset>
-                          </div>
-
-                          <div class="col-md-6 col-sm-12">
-                            <fieldset>
-                              <button
-                                type="submit"
-                                id="form-submit"
-                                class="main-button"
-                                style="background-color: #20232e"
-                              >
-                                ورود
-                              </button>
-                            </fieldset>
-                            <br>
-                            <fieldset>
-                              <button
-                              type="submit"
-                              id="form-submit"
-                              class="main-button"
-                            >
-                             ثبت نام
-                            </button>
-                            <button
-                              type="submit"
-                              id="form-submit"
-                              class="main-button"
-                            >
-                               فراموشی رمزعبور
-                            </button>
-                            </fieldset>
-                            
-                          </div>
-                            
-                          </div>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
-                </div>
+              <div class="col-md-6 col-sm-12" style="direction: rtl">
+                <button
+                  type="submit"
+                  id="form-submit"
+                  style="
+                    background-color: #20232e;
+                    color: #eee;
+                    width: 100%;
+                    height: 45px;
+                    border-radius: 5px;
+                    cursor: pointer;
+                  "
+                >
+                  ورود
+                </button>
+                <br />
+                <br />
               </div>
             </div>
+          </form>
+
+          <div
+            style="
+              cursor: pointer;
+              display: inline-block;
+              min-width: 30px;
+              text-align: center;
+              vertical-align: middle;
+            "
+          >
+            <span class="btn" style="align-items: center; display: inline-flex">
+              <a
+                class="btn-text"
+                href="/auth/register"
+                title="ثبت نام"
+                style="
+                 background-color: #f48840;
+                  border-radius: 5px;
+                  color: #fff !important;
+                  margin-right: 10px;
+                  padding: 5px 25px;
+                  width: 50%;
+                  height: 40px;
+                "
+                >ثبت نام</a
+              >
+              <a
+                class="btn-text navbar-signup-button"
+                href="/auth/register"
+                title="ثبت نام در ویرگول"
+                style="
+                  background-color: #f48840;
+                  border-radius: 5px;
+                  color: #fff !important;
+                  margin-right: 15px;
+                  padding: 5px 25px;
+                  width: 49%;
+                  height: 40px;
+                  text-align: center;
+                "
+                >فراموشی رمز عبور  </a
+              >
+            </span>
           </div>
+                    
         </div>
       </div>
-    </section>
+    </div>
 
     <footer><%- include('../../partials/footer'); %></footer>
 

@@ -3,7 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const path = require("path");
 const controller = require("../controllers/author");
-
+const isLoggedIn = require("../../middlewares/isLoggedIn");
 //Setting storage engine
 const storageEngine = multer.diskStorage({
   destination: "./public/storage/images/posts",
@@ -35,7 +35,7 @@ const upload = multer({
 });
 
 //add a middleware for check if user is login or not
-router.get("/create", controller.create);
+router.get("/create", isLoggedIn, controller.create);
 router.post("/create", upload.single("upload_file"), controller.post);
 
 module.exports = router;

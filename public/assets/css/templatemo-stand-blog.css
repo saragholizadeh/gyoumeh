@@ -955,7 +955,7 @@ footer p a:hover {
 }
 
 .contact-us .contact-information ul li span {
-  display: block;
+  display: flex;
   font-size: 14px;
   color: #aaa;
   margin-top: 8px;

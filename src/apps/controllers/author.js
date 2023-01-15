@@ -6,7 +6,7 @@ const Jwt = require("../../helpers/jwt");
 const PostValidation = require("../validations/Post");
 const separeteTags = require("../../helpers/separateTags");
 
-exports.create = (req, res) => {
+exports.create = (req, res) => {  
   res.render("pages/tutarial/create", {
     value: {
       data: {
