@@ -4,6 +4,8 @@ module.exports = async function getCategories(req, res, next) {
     next();
 
   }else{
-    res.redirect("/auth/login")
+    req.flash("error", "ابتدا وارد گیومه شوید");
+    res.redirect( "/auth/login");
   }
 };
+

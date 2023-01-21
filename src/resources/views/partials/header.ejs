@@ -1,67 +1,187 @@
 <header class="">
-    <nav class="navbar navbar-expand-lg">
-      <div class="container">
-        <% if (user) {%>
-
-        <img src="../../../../public/assets/images/avatar.png" alt="Avatar" class="avatar" style=" vertical-align: middle;
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;"
+  <nav class="navbar navbar-expand-lg">
+    <div class="container">
+      <% if (user) {%>
+      <div class="dropdown">
+        <a
+          class="btn btn-secondary"
+          href="#"
+          role="button"
+          id="dropdownMenuLink"
+          data-toggle="dropdown"
+          aria-expanded="false"
+          style="
+            background-color: #f7f7f7;
+            border: #f7f7f7;
+            font-size: 15px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #1e1e1e;
+            margin-top: 2px;
+            transition: all 0.3s;
+          "
         >
+          <img
+            src="../../../../public/assets/images/avatar.png"
+            alt="Avatar"
+            class="avatar"
+            style="
+              vertical-align: middle;
+              width: 50px;
+              height: 50px;
+              border-radius: 50%;
+            "
+          />
+        </a>
 
-        <% } else { %>
-          <div class="userLogin button js-userLogin" style="cursor: pointer;
+        <div
+          class="dropdown-menu"
+          aria-labelledby="dropdownMenuLink"
+          style="
+            background-color: white;            
+            border: white;
+            font-size: 15px;
+            text-decoration: dashed;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #1e1e1e;
+            margin-top: 2px;
+            transition: all 0.3s;
+            text-align: center;
+          "
+        >
+          <a class="dropdown-item" href="/auth/logout"><strong>نوشتن پست جدید </strong></a>      
+          <hr>
+          
+          <a class="dropdown-item" href="/auth/logout"><strong>مشاهده پروفایل کاربری</strong></a>
+          <hr>
+
+          <a class="dropdown-item" href="/auth/logout"><strong>تنظیمات حساب کاربری</strong></a>
+          <hr>
+
+          <a class="dropdown-item" href="/auth/logout"><strong>خروج</strong></a>
+        </div>
+      </div>
+      <% } else { %>
+      <div
+        class="userLogin button js-userLogin"
+        style="
+          cursor: pointer;
           display: inline-block;
           min-width: 30px;
           text-align: center;
-          vertical-align: middle;">
-          <span class="btn" style="align-items: center;
-          display: inline-flex; ">
-          <a class="btn-text" href="/auth/login" title="ورود به حساب کاربری" style="color: #107abe!important; padding-right: 20px;">ورود</a>
-          <a class="btn-text navbar-signup-button" href="/auth/register" title="ثبت نام در ویرگول" style="    background-color: #107abe;
-          border-radius: 5px;
-          color: #fff!important;
-          margin-right: 15px;
-          padding: 5px 25px;">ثبت نام</a>
+          vertical-align: middle;
+        "
+      >
+        <span class="btn" style="align-items: center; display: inline-flex">
+          <a
+            class="btn-text"
+            href="/auth/login"
+            title="ورود به حساب کاربری"
+            style="color: #107abe !important; padding-right: 20px"
+            >ورود</a
+          >
+          <a
+            class="btn-text navbar-signup-button"
+            href="/auth/register"
+            title="ثبت نام در ویرگول"
+            style="
+              background-color: #107abe;
+              border-radius: 5px;
+              color: #fff !important;
+              margin-right: 15px;
+              padding: 5px 25px;
+            "
+            >ثبت نام</a
+          >
         </span>
       </div>
-        <% } %>
+      <% } %>
 
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-          <ul class="navbar-nav ml-auto">
-            
-            <li class="nav-item active">
-              <a class="nav-link" href="/" style="margin-top:-10px; font-size: 25px;">« گیومه »</a>
-            </li>
-            <li class="nav-item active">
-              <a class="nav-link" href="/a/create" style="margin-bottom:-10px; color: #107abe; ">شروع به نوشتن کنید
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarResponsive"
+        aria-controls="navbarResponsive"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item active">
+            <a
+              class="nav-link"
+              href="/"
+              style="margin-top: -10px; font-size: 25px"
+              >« گیومه »</a
+            >
+          </li>
+          <li class="nav-item active">
+            <a
+              class="nav-link"
+              href="/a/create"
+              style="margin-bottom: -10px; color: #107abe"
+              >شروع به نوشتن کنید
+            </a>
+          </li>
+          <li>
+            <div class="dropdown">
+              <a
+                class="btn btn-secondary dropdown-toggle"
+                href="#"
+                role="button"
+                id="dropdownMenuLink"
+                data-toggle="dropdown"
+                aria-expanded="false"
+                style="
+                  background-color: #f7f7f7;
+                  border: #f7f7f7;
+                  font-size: 15px;
+                  font-weight: 800;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  color: #1e1e1e;
+                  margin-top: 2px;
+                  transition: all 0.3s;
+                "
+              >
+                دسته‌بندی‌ها
               </a>
-            </li>
-            <li class="nav-item dropdown" data-toggle="dropdown">
-              <a class="nav-link"  data-toggle="dropdown"  >دسته‌بندی‌ها</a>
-                <ul class="dropdown-menu" style="text-align-last:center;">
-                  <% categories.forEach(function(category){%> 
 
-                    <li><a class="dropdown-item" href="/category/<%= category %>" > <%= category %></a></li>
-                    <!-- <li><a class="dropdown-item" href="/category/بلاکچین" data-hover=" ">بلاکچین</a></li>
-                    <li><a class="dropdown-item" href="/category/طراحی و گرافیک" data-hover=" ">طراحی و گرافیک</a></li>
-                    <li><a class="dropdown-item" href="/category/هوش مصنوعی" data-hover=" ">هوش مصنوعی</a></li>
-                    <li><a class="dropdown-item" href="/category/امنیت و شبکه" data-hover=" ">امنیت و شبکه</a></li>
-                    <li><a class="dropdown-item" href="/category/تولید محتوا و سئو" data-hover=" ">تولید محتوا و سئو</a></li> -->
-                    <% }) %>
+              <div
+                class="dropdown-menu"
+                aria-labelledby="dropdownMenuLink"
+                style="
+                  background-color: white;
+                  border: white;
+                  font-size: 15px;
+                  font-weight: 800;
+                  text-transform: uppercase;
+                  letter-spacing: 0.5px;
+                  color: #1e1e1e;
+                  margin-top: 2px;
+                  transition: all 0.3s;
+                  text-align: center;
+                "
+              >
+                <% categories.forEach(function(category){%>
 
-                  </ul>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">داغ‌ترین‌ها</a>
-            </li>
-           
+                <a class="dropdown-item" href="/category/<%= category %>"
+                  ><strong><%= category %></strong></a
+                >
 
-          </ul>
-        </div>
+                <% }) %>
+              </div>
+            </div>
+          </li>
+ 
+        </ul>
       </div>
-    </nav>
-  </header>
+    </div>
+  </nav>
+</header>
