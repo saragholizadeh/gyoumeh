@@ -3,7 +3,6 @@ module.exports = (mongoose) => {
     "categories",
     mongoose.Schema({
       title: String,
-      id: Number,
       image: Object,
     })
   );

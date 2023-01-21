@@ -11,7 +11,7 @@ const db = require("./src/apps/models");
 const auth = require("./src/apps/routes/auth");
 const user = require("./src/apps/routes/user");
 const author = require("./src/apps/routes/author");
-
+const admin = require("./src/apps/routes/admin");
 //middlwares
 const setCurrentUser = require("./src/middlewares/setCurrentUser");
 const categories = require("./src/middlewares/getCategories");
@@ -45,6 +45,8 @@ app.use(categories);
 app.use("/auth", auth);
 app.use("/", user);
 app.use("/a", author);
+app.use("/admin", admin);
+
 
 db.mongoose
   .connect(db.url, {

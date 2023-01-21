@@ -2,6 +2,8 @@ const db = require("../models/index");
 const Category = db.categories;
 const User = db.users;
 const Tutarial = db.tutarials;
+const Tag = db.tags;
+
 const Jwt = require("../../helpers/jwt");
 const PostValidation = require("../validations/Post");
 const separeteTags = require("../../helpers/separateTags");
@@ -39,7 +41,7 @@ exports.post = async (req, res) => {
     var user = await User.findOne({ email: email.data });
 
     const timestamp = parseInt(new Date().getTime()/1000);
-    await Tutarial.create({
+    const insertPost = await Tutarial.create({
       title: req.body.title,
       body: req.body.body,
       category: category.title,
@@ -49,6 +51,22 @@ exports.post = async (req, res) => {
       created_at: timestamp
     });
 
+    if(tags.length > 0) {
+      for (let i = 0; i < tags.length; i++) {
+        const tag = tags[i];
+        const findTag = await Tag.findOne({name: tag});
+        if(findTag){
+          //update posts array
+          if(!findTag.posts.includes(insertPost._id)){
+            await Tag.updateOne({name: tag}, {$push: {posts: insertPost._id}});
+          };
+        }else{
+          //create new tag
+          await Tag.create({name: tag, posts: [insertPost._id]});
+        }
+      }
+    };
+    
     req.flash('success', 'پست شما با موفقیت ثبت و در گیومه منتظر شد')
     res.redirect('/')
     //redirect to dashbaord

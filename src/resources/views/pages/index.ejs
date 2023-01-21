@@ -161,9 +161,9 @@
                           <div class="col-6">
                             <ul class="post-tags">
                               <li><i class="fa fa-tags"></i></li>
-
-                              <li><a href="#">Beauty</a>,</li>
-                              <li><a href="#">Nature</a></li>
+                              <% post.tags.forEach(function(tag){%> 
+                                <li><a href="#"><%= tag %></a></li>
+                              <% }) %>
                             </ul>
                           </div>
                           

@@ -10,5 +10,7 @@ db.users = require("./User.js")(mongoose);
 db.tutarials = require("./Tutarial.js")(mongoose);
 db.categories = require("./Category.js")(mongoose);
 db.comments = require("./Comment.js")(mongoose);
+db.tags = require("./Tag.js")(mongoose);
+
 
 module.exports = db;
