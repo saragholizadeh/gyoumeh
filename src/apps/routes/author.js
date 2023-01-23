@@ -36,6 +36,8 @@ const upload = multer({
 
 //add a middleware for check if user is login or not
 router.get("/create", isLoggedIn, controller.create);
-router.post("/create", upload.single("upload_file"), controller.post);
+router.post("/create", isLoggedIn, upload.single("upload_file"), controller.post);
+router.get("/edit/:postTitle", isLoggedIn, controller.edit);
+router.post("/update",isLoggedIn, upload.single("upload_file"), controller.update);
 
 module.exports = router;

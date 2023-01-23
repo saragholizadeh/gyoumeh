@@ -55,15 +55,15 @@ exports.getPost = async (req, res) => {
   var author = await User.findById(post.author_id);
 
   const image = post.image.path;
-  
+
   var comments = [];
   for (let i = 0; i < post.comments.length; i++) {
     var comment = await Comment.findById(post.comments[i]);
     comment["date"] = solarDate.timestampToSolar(comment.created_at);
     comments.push(comment);
-  };
+  }
 
-  console.log({comments});
+  console.log({ comments });
 
   obj = {
     title: post.title,
@@ -172,6 +172,33 @@ exports.addComment = async (req, res) => {
   }
 };
 
+exports.dashboard = async (req, res) => {
+  var solarDate = new DateConverter();
+  const user = await User.findOne({ email: req.user.email });
+  const posts = await Tutarial.find({ author_id: user._id }).sort({
+    $natural: -1,
+  }).limit(3);
+
+  const postsArr = [];
+  for (let i = 0; i < posts.length; i++) {
+    var post = posts[i];
+    var postBody = post.body.slice(0, 150) + "...";
+
+    obj = {
+      title: post.title,
+      image: post.image.path,
+      date: solarDate.timestampToSolar(post.created_at),
+      category: post.category,
+      tags: post.tags,
+      body: postBody,
+      comments: post.comments.length,
+    };
+    postsArr.push(obj);
+  }
+
+
+  res.render("pages/dashboard", {user, posts: postsArr});
+};
 exports.notFound = (req, res) => {
   res.render("pages/not-found");
 };

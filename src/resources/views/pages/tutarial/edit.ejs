@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>داشبورد</title>
+    <title>داشبورد - ویرایش</title>
     <link
       href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
       rel="stylesheet"
@@ -60,7 +60,7 @@
       <!-- Page Content -->
       <div id="page-content-wrapper">
         <div class="container-fluid">
-          <h2 style="text-align: center; color: #3f3f3f;"><strong>ایجاد مقاله جدید در گیومه </strong>
+          <h2 style="text-align: center; color: #3f3f3f;"><strong>ویرایش مطلب</strong>
         </h2>
           <div class="content">
             <div class="container">
@@ -107,7 +107,7 @@
                               name="category"
                               style="text-align: center;"
                             >
-                              <option selected value="">انتخاب کنید..</option>
+                              <option selected value= <%= value.data.category %> >  <%= value.data.category %> </option>
                               <option value="1">برنامه‌نویسی</option>
                               <option value="2">بلاکچین</option>
                               <option value="3">طراحی و گرافیک</option>
