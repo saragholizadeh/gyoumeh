@@ -22,7 +22,6 @@ exports.create = (req, res) => {
 };
 
 exports.post = async (req, res) => {
-  // console.log(req.body)
   const validation = new PostValidation();
   const validatedDate = await validation.createPost(req);
 
@@ -90,6 +89,7 @@ exports.edit = async (req, res) => {
   res.render("pages/tutarial/edit", {
     value: {
       data: {
+        id: post._id,
         title: post.title,
         category: post.category,
         tags: post.tags,
@@ -99,4 +99,53 @@ exports.edit = async (req, res) => {
   });
 };
 
-exports.update = async (req, res) => {};
+exports.update = async (req, res) => {
+  const validation = new PostValidation();
+  const validatedDate = await validation.createPost(req);
+
+  if (validatedDate == true) {
+    //save post in database
+    var tags = req.body.tags;
+    tags = separeteTags(tags);
+
+    const updatePost = await Tutarial.updateOne({_id: req.params.postId},{
+      title: req.body.title,
+      body: req.body.body,
+      category: req.body.category,
+      image: req.file,
+      tags,
+    });
+
+    if (tags.length > 0) {
+      for (let i = 0; i < tags.length; i++) {
+        const tag = tags[i];
+        const findTag = await Tag.findOne({ name: tag });
+        if (findTag) {
+          //update posts array
+          if (!findTag.posts.includes(req.params.postId)) {
+            await Tag.updateOne(
+              { name: tag },
+              { $push: { posts: req.params.postId } }
+            );
+          }
+        } else {
+          //create new tag
+          await Tag.create({ name: tag, posts: [req.params.postId] });
+        }
+      }
+    }
+
+    req.flash("success", "پست شما با موفقیت ویرایش شد");
+    res.redirect("/dashboard");
+    //redirect to dashbaord
+  } else {
+    //validation errors
+    const value = {
+      data: validatedDate._original,
+    };
+
+    const error = validatedDate.toString().replace("ValidationError:", "");
+    req.flash("error", error);
+    res.render("pages/tutarial/edit", { value });
+  }
+};

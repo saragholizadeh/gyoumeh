@@ -8,6 +8,7 @@ module.exports = (mongoose) => {
       role: String,
       post_ids: Array,
       register_code: Number,
+      bio: String,
     })
   );
   return User;

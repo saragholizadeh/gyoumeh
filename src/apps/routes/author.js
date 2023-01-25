@@ -38,6 +38,5 @@ const upload = multer({
 router.get("/create", isLoggedIn, controller.create);
 router.post("/create", isLoggedIn, upload.single("upload_file"), controller.post);
 router.get("/edit/:postTitle", isLoggedIn, controller.edit);
-router.post("/update",isLoggedIn, upload.single("upload_file"), controller.update);
-
+router.post("/update/:postId",isLoggedIn, upload.single("upload_file"), controller.update);
 module.exports = router;

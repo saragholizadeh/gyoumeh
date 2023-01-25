@@ -82,7 +82,7 @@
                       method="post"
                       id="contactForm"
                       name="contactForm"
-                      action="/a/create"
+                      action="/a/update/<%= value.data.id %>"
                     >
                       <div class="row">
                         <div class="col-md-6 form-group mb-3">
@@ -107,7 +107,7 @@
                               name="category"
                               style="text-align: center;"
                             >
-                              <option selected value= <%= value.data.category %> >  <%= value.data.category %> </option>
+                              <option selected value= <%= value.data.category %> ><%= value.data.category %> </option>
                               <option value="1">برنامه‌نویسی</option>
                               <option value="2">بلاکچین</option>
                               <option value="3">طراحی و گرافیک</option>

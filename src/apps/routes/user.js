@@ -16,4 +16,6 @@ router.post(
 );
 
 router.get("/dashboard", isLoggedIn, controller.dashboard);
+router.get("/profile/:userId", controller.profile)
+
 module.exports = router;

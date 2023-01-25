@@ -175,9 +175,11 @@ exports.addComment = async (req, res) => {
 exports.dashboard = async (req, res) => {
   var solarDate = new DateConverter();
   const user = await User.findOne({ email: req.user.email });
-  const posts = await Tutarial.find({ author_id: user._id }).sort({
-    $natural: -1,
-  }).limit(3);
+  const posts = await Tutarial.find({ author_id: user._id })
+    .sort({
+      $natural: -1,
+    })
+    .limit(3);
 
   const postsArr = [];
   for (let i = 0; i < posts.length; i++) {
@@ -196,9 +198,52 @@ exports.dashboard = async (req, res) => {
     postsArr.push(obj);
   }
 
-
-  res.render("pages/dashboard", {user, posts: postsArr});
+  res.render("pages/dashboard", { user, posts: postsArr });
 };
+
+exports.profile = async (req, res) => {
+  try{
+    const user = await User.findById( req.params.userId );
+    if(user){
+      res.render("pages/profile" , {req , author: user});
+  
+  
+    }else{
+      res.render("pages/not-found")
+    }
+  }catch(err){
+    res.render("pages/not-found")
+
+  }
+
+  // var solarDate = new DateConverter();
+  // const user = await User.findOne({ email: req.user.email });
+  // const posts = await Tutarial.find({ author_id: user._id })
+  //   .sort({
+  //     $natural: -1,
+  //   })
+  //   .limit(3);
+
+  // const postsArr = [];
+  // for (let i = 0; i < posts.length; i++) {
+  //   var post = posts[i];
+  //   var postBody = post.body.slice(0, 150) + "...";
+
+  //   obj = {
+  //     title: post.title,
+  //     image: post.image.path,
+  //     date: solarDate.timestampToSolar(post.created_at),
+  //     category: post.category,
+  //     tags: post.tags,
+  //     body: postBody,
+  //     comments: post.comments.length,
+  //   };
+  //   postsArr.push(obj);
+  // }
+
+  // res.render("pages/profile", { user, posts: postsArr });
+};
+
 exports.notFound = (req, res) => {
   res.render("pages/not-found");
 };

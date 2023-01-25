@@ -35,7 +35,7 @@
       <div class="collapse navbar-collapse" id="navbarsExample02">
         <ul class="navbar-nav mr-auto">
           <li class="nav-item active">
-            <a class="nav-link" href="#"
+            <a class="nav-link" href="/"
               >بازگشت به گیومه <span class="sr-only">(current)</span></a
             >
           </li>
@@ -47,20 +47,20 @@
       <!-- Sidebar -->
       <div id="sidebar-wrapper">
         <ul class="sidebar-nav" style="margin-top: 15px; margin-right: 10px">
-          <li><a href="#">پیشخوان </a></li>
+          <li><a href="/dashboard">پیشخوان </a></li>
           <li><a href="/a/create">افزودن پست جدید</a></li>
-          <li><a href="#">مطالب پیشین</a></li>
-          <li><a href="#">آخرین نظرات</a></li>
-          <li><a href="#">تنظیمات حساب کاربری</a></li>
-          <li><a href="#">مشاهده پروفایل</a></li>
-          <li><a href="#">خروج از حساب حساب کاربری</a></li>
+          <li><a href="/">مطالب پیشین</a></li>
+          <!-- <li><a href="/">آخرین نظرات</a></li> -->
+          <li><a href="/">تنظیمات حساب کاربری</a></li>
+          <li><a href="/">مشاهده پروفایل</a></li>
+          <li><a href="/">خروج از حساب حساب کاربری</a></li>
         </ul>
       </div>
       <!-- /#sidebar-wrapper -->
       <!-- Page Content -->
       <div id="page-content-wrapper">
         <div class="container-fluid">
-          <h2 style="margin-bottom: 30px ;"><%= user.name %>عزیز، خوش آمدید</h2>
+          <h2 style="margin-bottom: 30px ;"><%= user.name %> عزیز، خوش آمدید</h2>
           <hr>
           <h4 style="margin-top: 40px; margin-bottom: 130px;"> آخرین پست های نوشته شده توسط شما : </h3>
      
@@ -69,10 +69,7 @@
                 <div class="row blog">
                   <div class="col-md-12">
                     <div id="blogCarousel" class="carousel slide container-blog" data-ride="carousel">
-                      <ol class="carousel-indicators">
-                        <li data-target="#blogCarousel" data-slide-to="0" class="active"></li>
-                        <li data-target="#blogCarousel" data-slide-to="1"></li>
-                      </ol>
+                    
                       <!-- Carousel items -->
                       <div class="carousel-inner">
                         <div class="carousel-item active">
@@ -80,8 +77,8 @@
 
                             <% posts.forEach(function(post){%>
 
-                            <div class="card col-md-4" >
-                              <div class="item-box-blog card">
+                            <div class=" col-md-4" >
+                              <div class="item-box-blog ">
                                 <div class="item-box-blog-image">
                                   <!--Date-->
                                   <div class="item-box-blog-date bg-blue-ui white"> <span class="mon"><%= post.date %></span> </div>
@@ -92,18 +89,18 @@
                                   <!--Heading-->
                                   <div class="item-box-blog-heading">
                                     <a href="#" tabindex="0">
-                                      <h5><%= post.date %></h5>
+                                      <h5 style="color: #f48840 !important;"><%= post.title %></h5>
                                     </a>
                                   </div>
                                   <!--Data-->
                                   <div class="item-box-blog-data" style="padding: px 15px;">
-                                    <p><i class="fa fa-user-o"></i> <%= user.name %>, <i class="fa fa-comments-o"></i> <%= post.comments %></p>
+                                    <p>نظرات : <i class="fa fa-comments-o"></i> <%= post.comments %></p>
                                   </div>
                                   <!--Text-->
                                   <div class="item-box-blog-text">
                                     <p><%= post.body %></p>
                                   </div>
-                                  <div class="mt"> <a href="/a/edit/<%= post.title %>" tabindex="0" class="btn bg-blue-ui white read">ویرایش مقاله</a> </div>
+                                  <div class="mt"> <a href="/a/edit/<%= post.title %>"  tabindex="0" class="btn bg-blue-ui white read"  >ویرایش مقاله</a> </div>
                                   <!--Read More Button-->
                                 </div>
                               </div>
