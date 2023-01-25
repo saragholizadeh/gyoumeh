@@ -10,4 +10,4 @@ dist
 .vscode
 .idea
 coverage
-public/storage
+public/storage/
