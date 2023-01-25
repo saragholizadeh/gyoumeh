@@ -12,6 +12,7 @@ exports.main = async (req, res) => {
   bodyPosts = posts.splice(0, 5);
   var solarDate = new DateConverter();
 
+  //Body posts (last 5);
   var postsArr = [];
   for (let i = 0; i < bodyPosts.length; i++) {
     var post = bodyPosts[i];
@@ -32,6 +33,23 @@ exports.main = async (req, res) => {
     postsArr.push(obj);
   }
 
+  //banner posts : most comments posts
+  var bannerPosts = await Tutarial.find().sort({"comments":-1 }).limit(5);
+
+  var bannerArr = [];
+  for (let i = 0; i < bannerPosts.length; i++) {
+    var post = bannerPosts[i];
+    var author = await User.findById(post.author_id);
+    obj = {
+      title: post.title,
+      category: post.category,
+      author: author.name,
+      comments: post.comments.length,
+      date: solarDate.timestampToSolar(post.created_at),
+      image: post.image.path,
+    }
+    bannerArr.push(obj);
+  };
   var titles = [];
   for (let i = 0; i < posts.length; i++) {
     obj = {
@@ -41,7 +59,7 @@ exports.main = async (req, res) => {
     titles.push(obj);
   }
 
-  res.render("pages/index", { posts: postsArr, titles });
+  res.render("pages/index", { posts: postsArr, titles , bannerPosts: bannerArr});
 };
 
 exports.getPost = async (req, res) => {
@@ -247,3 +265,50 @@ exports.profile = async (req, res) => {
 exports.notFound = (req, res) => {
   res.render("pages/not-found");
 };
+
+
+
+[
+  {
+    titles: 'بلاک چین چیست؟',
+    category: 'بلاکچین',
+    author: 'سارا قلی‌زاده',
+    comments: 4,
+    date: '۱۴۰۱/۱۰/۱۹',
+    image: 'public\\storage\\images\\posts\\5.png'
+  },
+  {
+    titles: 'آیا چت ‌جی‌پی‌تی آینده محتواست؟',
+    category: 'هوش مصنوعی',
+    author: 'سارا قلی‌زاده',
+    comments: 7,
+    date: '۱۴۰۱/۱۰/۱۸',
+    image: 'public\\storage\\images\\posts\\2.png'
+  },
+  {
+    titles: 'دانستنی هایی در مورد موشن گرافیک که شما نمیدانید',
+    category: 'طراحی و گرافیک',
+    author: 'سارا قلی‌زاده',
+    comments: 2,
+    date: '۱۴۰۱/۹/۱۴',
+    image: 'public\\storage\\images\\posts\\7.jpg'
+  },
+  {
+    titles: 'چگونه در برنامه نویسی کد های بهتری بنویسیم؟',
+    category: 'امنیت و شبکه',
+    author: 'سارا قلی‌زاده',
+    comments: 4,
+    date: '۱۴۰۱/۱۰/۲۳',
+    image: 'public\\storage\\images\\posts\\1673546301974.jpeg'
+  },
+  {
+    titles: 'آموزش سئو',
+    category: 'تولید محتوا و سئو',
+    author: 'سارا قلی‌زاده',
+    comments: 4,
+    date: '۱۴۰۱/۱۰/۱۹',
+    image: 'public\\storage\\images\\posts\\1.jpeg'
+  }
+]
+
+
