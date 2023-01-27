@@ -17,86 +17,102 @@
     <!-- Page Content -->
 
     <!-- Banner Starts Here -->
-    <div class="main-banner header-text">
-      <div class="container-fluid">
-        <div class="owl-banner owl-carousel"></div>
-      </div>
+    <div class="heading-page header-text">
+      <section>
+        <div
+          style="
+            position: relative;
+            text-align: center;
+            color: rgb(255, 255, 255);
+          "
+        >
+          <img
+            src="../../../../public/assets/images/avatar.png"
+            style="
+              vertical-align: middle;
+              width: 100px;
+              height: 100px;
+              border-radius: 50%;
+            "
+          />
+          <div style="
+              top: 50%;
+              left: 50%; 
+              width: 100%;
+              margin-top:10px"
+          >
+            <h4 style="color:rgb(70, 70, 70); text-align: rigth; ">
+              <strong ><%= user.name %></strong>
+              <h5 style="color:rgb(70, 70, 70) ; margin-top: 10px;"><%= user.bio %></h5>
+            </h4>
+          </div>
+        </div>
+      </section>
     </div>
     <!-- Banner Ends Here -->
 
-    <section class="blog-posts" style="background-color: rgb(240, 239, 239)">
+    <!-- Page Content -->
+
+    <section class="blog-posts" style="background-color: rgb(240, 239, 239); margin-top: 30px;">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-8">
-            <div class="all-blog-posts card">
-              <div class="row">
-                <div class="col-lg-12">
-                  <div class="main-button">
-                    
-                      <p><%= author.name %>  هنوز پستی در ویرگول ننوشته. بعد از انتشار اولین پست، آن را در اینجا نمایش می‌دهیم.</p>
+        <div
+          class="row"
+          style="
+            display: -ms-flexbox;
+            display: block;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            margin-right: -15px;
+            margin-left: -15px;
+          "
+        >
+        <% if (posts.length > 0) { %>
+          <% posts.forEach(function(post){%>
 
-
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-lg-4">
-            <div class="sidebar">
-              <div class="row card" style="text-align: center">
-                <div class="col-lg-12">
-                  <div class="sidebar-item recent-posts">
-                    <div class="sidebar-heading">
-                      <img
-                        src="../../../../public/assets/images/avatar.png"
-                        alt="Avatar"
-                        class="avatar"
-                        style="
-                          vertical-align: middle;
-                          margin-bottom: 20px;
-                          width: 150px;
-                          height: 150px;
-                          border-radius: 50%;
-                        "
-                      />
-                      <h2 ><%= author.name %></h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                        <li>
-                          <a href="post-details.ejs">
-                            <h5></h5>
-                          </a>
-                        </li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
+            <div class="blog-post card" style="height: 270px;">
+              <div class="down-content" style="padding: 20px; height: 300px;">
+                <img 
+                 style=" width:27%; height: 200px; float: right; object-fit:
+                cover; margin-bottom: 10px; margin-top: 10px;" src= ../../../../<%= post.image %> alt="" />
                 
-                <!-- <div class="col-lg-12">
-                  <div class="sidebar-item tags">
-                    <div class="sidebar-heading">
-                      <h2 style="color: #f48840">تگ‌ها</h2>
-                    </div>
-                    <div class="content">
-                      <ul>
-                        <li><a href="#">Lifestyle</a></li>
-                        <li><a href="#">Creative</a></li>
-                        <li><a href="#">HTML5</a></li>
-                        <li><a href="#">Inspiration</a></li>
-                        <li><a href="#">Motivation</a></li>
-                        <li><a href="#">PSD</a></li>
-                        <li><a href="#">Responsive</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                </div> -->
+                <div style="text-align: center; margin-top: 5px;">
+                  <span style="text-align: center"><%= post.category %></span>
+                </div>
+                <a
+                  href="/posts/<%= post.category %>/<%= post.title %>"
+                  style="text-align: center"
+                  ><h4><%= post.title %></h4></a
+                >
+                <ul class="post-info" style="text-align: center">
+                  <li><a href="#"><%= post.date %></a></li>
+                </ul>
+                <p style="text-align: center; border-bottom: none; padding: 20px; margin-top: 10px; margin-bottom: 10px;"><%= post.body %></p>
+                
               </div>
             </div>
+  
+            <% }) %>
+        <% } else { %>
+          <div class="blog-post card">
+            <div class="down-content" style="padding: 20px;position: relative;
+            text-align: center; ">
+              <img 
+               style="height: 350px; margin-bottom: 10px; margin-top: 10px; vertical-align: middle;" src= "../../../../public/assets/images/nauthor.png" alt="" />
+
+              <p style="text-align: center; border-bottom: none; padding: 20px; margin-top: 10px; margin-bottom: 10px;">
+              <strong>                این کاربر هنوز پستی در گیومه ننوشته. بعد از انتشار اولین پست، آن را در اینجا نمایش می‌دهیم.             
+              </strong>
+              </p>
+
+            </div>
           </div>
+
+          <% } %>
+         
         </div>
       </div>
-    </section>
+    </section> 
+
 
     <footer><%- include('../partials/footer'); %></footer>
 

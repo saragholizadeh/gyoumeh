@@ -77,7 +77,7 @@
                         ><h4><%= post.title %></h4></a
                       >
                       <ul class="post-info"  style ="text-align: center;">
-                        <li><a href="#"><%= post.author %></a></li>
+                        <li><a href="/profile/<%= post.author._id %>"><%= post.author.name %></a></li>
                         <li><a href="#"><%= post.date %></a></li>
                       </ul>
                       <p>
@@ -89,7 +89,7 @@
                             <ul class="post-tags">
                               <li><i class="fa fa-tags"></i></li>
                               <% post.tags.forEach(function(tag){%> 
-                                <li><a href="#"><%= tag %></a></li>
+                                <li><a href="/tags/<%= tag %>"><%= tag %></a></li>
                               <% }) %>
                             </ul>
                           </div>
@@ -104,7 +104,7 @@
 
                 <div class="col-lg-12">
                   <div class="main-button">
-                    <a href="blog.ejs">View All Posts</a>
+                    <!-- <a href="blog.ejs">View All Posts</a> -->
                   </div>
                 </div>
               </div>
@@ -122,7 +122,8 @@
                       <ul>
                         <% titles.forEach(function(title){%> 
                           <li>
-                            <a href="post-details.ejs">
+
+                            <a href="/posts/<%= title.category %>/<%= title.title %>">
                               <h5>
                                 <%= title.title %>
                               </h5>
@@ -141,12 +142,11 @@
                     </div>
                     <div class="content">
                       <ul>
-                    <li><a class="dropdown-item" href="#" data-hover=" ">برنامه‌نویسی</a></li>
-                    <li><a class="dropdown-item" href="#" data-hover=" ">بلاکچین</a></li>
-                    <li><a class="dropdown-item" href="#" data-hover=" ">طراحی و گرافیک</a></li>
-                    <li><a class="dropdown-item" href="#" data-hover=" ">هوش مصنوعی</a></li>
-                    <li><a class="dropdown-item" href="#" data-hover=" ">امنیت و شبکه</a></li>
-                    <li><a class="dropdown-item" href="#" data-hover=" ">تولید محتوا و سئو</a></li>
+                        <% categories.forEach(function(category){%>
+
+                    <li><a class="dropdown-item"href="/category/<%= category %>" data-hover=" "><%= category %></a></li>
+                <% }) %>
+
                       </ul>
                     </div>
                   </div>
@@ -158,6 +158,7 @@
                     </div>
                     <div class="content">
                       <ul>
+
                         <li><a href="#">Lifestyle</a></li>
                         <li><a href="#">Creative</a></li>
                         <li><a href="#">HTML5</a></li>
@@ -165,6 +166,8 @@
                         <li><a href="#">Motivation</a></li>
                         <li><a href="#">PSD</a></li>
                         <li><a href="#">Responsive</a></li>
+
+                        
                       </ul>
                     </div>
                   </div>

@@ -26,7 +26,7 @@ exports.main = async (req, res) => {
       image: post.image.path,
       date: solarDate.timestampToSolar(post.created_at),
       category: post.category,
-      author: author.name,
+      author: author,
       tags: post.tags,
       body: postBody,
     };
@@ -56,6 +56,7 @@ exports.main = async (req, res) => {
     obj = {
       title: posts[i].title,
       date: solarDate.timestampToSolar(posts[i].created_at),
+      category: posts[i].category,
     };
     titles.push(obj);
   }
@@ -85,8 +86,6 @@ exports.getPost = async (req, res) => {
     comment["date"] = solarDate.timestampToSolar(comment.created_at);
     comments.push(comment);
   }
-
-  console.log({ comments });
 
   obj = {
     title: post.title,
@@ -191,7 +190,7 @@ exports.getTagPosts = async (req, res) => {
 
       posts.push(obj);
     }
-    
+
     console.log(posts);
 
     res.render("pages/tag-posts", { posts, tag: tagName });
@@ -260,9 +259,36 @@ exports.dashboard = async (req, res) => {
 
 exports.profile = async (req, res) => {
   try {
-    const user = await User.findById(req.params.userId);
+    var user = await User.findById(req.params.userId);
     if (user) {
-      res.render("pages/profile", { req, author: user });
+      //find user Posts
+      var posts = await Tutarial.find({ author_id: user._id }).sort({
+        $natural: -1,
+      });
+
+      var postsArr = []; 
+      if (posts) {
+        for (let i = 0; i < posts.length; i++) {
+          var post = posts[i];
+          var postBody = post.body.slice(0, 100) + "...";
+          var solarDate = new DateConverter();
+          var image = post.image.path;
+          image = image.replace(/\\/g, "/");
+          obj = {
+            title: post.title,
+            image: image,
+            date: solarDate.timestampToSolar(post.created_at),
+            author: user,
+            category: post.category,
+            tags: post.tags,
+            body: postBody,
+            comments: post.comments.length,
+          };
+          postsArr.push(obj);
+        }
+      } 
+      res.render("pages/profile", { user, posts: postsArr });
+
     } else {
       res.render("pages/not-found");
     }
