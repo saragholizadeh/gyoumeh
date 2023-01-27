@@ -17,7 +17,7 @@
     <!-- Page Content -->
 
     <!-- Banner Starts Here -->
-    <div class="main-banner header-text ">
+    <div class="main-banner header-text" >
       <div class="container-fluid ">
         <div class=" owl-banner owl-carousel card">
         
@@ -25,7 +25,7 @@
 
           <div class=" item">
             <img 
-            style="filter: brightness(20%); height: 400px;  object-fit: cover;            "
+            style="filter: brightness(20%); height: 300px;  object-fit: cover;            "
             src="<%= post.image %>" alt="">
             <div class="item-content" >
               <div class="main-content">
@@ -49,70 +49,60 @@
     <!-- Banner Ends Here -->
 
 
-    <section class="blog-posts" style="background-color: rgb(240, 239, 239);">
+    <section class="blog-posts" style="background-color: rgb(240, 239, 239); margin-top: 60px;">
       <div class="container">
         <div class="row">
-          <div class="col-lg-8 ">
-            <div class="all-blog-posts card">
-              <div class="row">
-
-                <% posts.forEach(function(post){%> 
-
-                <div class="col-lg-12 card">
-                  <div class="blog-post ">
-                    <div class="blog-thumb">
-                      <div>
-                        <img style="margin-top: 20px;"
-                        src=<%= post.image %>
-                        alt=""
-                      />
-                      </div>
-       
-                    </div>
-                    <div class="down-content">
-                      <div style ="text-align: center;">
-                      <span style ="text-align: center;"><%= post.category %></span>
-                      </div>
-                      <a href="/posts/<%= post.category %>/<%= post.title %>"  style ="text-align: center;"
-                        ><h4><%= post.title %></h4></a
-                      >
-                      <ul class="post-info"  style ="text-align: center;">
-                        <li><a href="/profile/<%= post.author._id %>"><%= post.author.name %></a></li>
-                        <li><a href="#"><%= post.date %></a></li>
-                      </ul>
-                      <p>
-                        <%= post.body %>
-                      </p>
-                      <div class="post-options">
-                        <div class="row">
-                          <div class="col-6">
-                            <ul class="post-tags">
-                              <li><i class="fa fa-tags"></i></li>
-                              <% post.tags.forEach(function(tag){%> 
-                                <li><a href="/tags/<%= tag %>"><%= tag %></a></li>
-                              <% }) %>
-                            </ul>
-                          </div>
-                          
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+          <div class="col-lg-8">
+            <div class="all-blog-posts card" style=" background-color: white; text-align: center;">
+              <div class="down-content">
+                <div>
+                  <img style="height: 250px; float: center; object-fit:cover; "  src="../../../../public/assets/images/writing.svg" alt="" />
                 </div>
 
-                <% }) %>
-
-                <div class="col-lg-12">
-                  <div class="main-button">
-                    <!-- <a href="blog.ejs">View All Posts</a> -->
-                  </div>
-                </div>
+              
+                <h6 style="color:rgb(70, 70, 70); text-align: center;  margin-bottom: 20px;">
+                  <strong>
+                    <br>
+                    به گیومه، دنیای کلمات خوش آمدید
+                    <br>
+                    گیومه بستری برای خواندن، نوشتن و گفتگو درباره‌ی تکنولوژی های مورد علاقه شماست.</strong>
+                    <br>
+                  
+                  </h6>  
+                  <a
+                  class="btn-text navbar-signup-button"
+                  href="/auth/register"
+                  title="ثبت نام در ویرگول"
+                  style="
+                    background-color: #107abe;
+                    border-radius: 5px;
+                    color: #fff !important;
+                    padding: 5px 25px;
+                    margin-top: 3px;
+                  "
+                  >شروع به کار</a> 
               </div>
             </div>
+          
           </div>
           <div class="col-lg-4">
-            <div class="sidebar">
-              <div class="row card" style="text-align: center;">
+            <div class="blog-post card" style=" background-color: white; text-align: center;"">
+              <div class="down-content">
+                <img style=" width: 300px ; float: center; object-fit:cover" 
+                src="../../../../public/assets/images/cre.svg"
+                alt="" />
+          
+              
+                <h5 style="color:rgb(70, 70, 70); text-align: center; ">
+                  <strong>
+                    زمان آن رسیده که شیوه‌ی نوشتن و خواندن مطالبتان را تغییر دهید. </strong>
+                </h5>    </div>
+            </div>
+          
+          </div>
+           <div class="col-lg-4">
+            <div class="sidebar  ">
+              <div class="row card " style="text-align: center; background-color: #fff; margin-right: 20px;">
                 <div class="col-lg-12">
                   <div class="sidebar-item recent-posts ">
                     <div class="sidebar-heading">
@@ -167,7 +157,6 @@
                         <li><a href="#">PSD</a></li>
                         <li><a href="#">Responsive</a></li>
 
-                        
                       </ul>
                     </div>
                   </div>
@@ -175,6 +164,65 @@
               </div>
             </div>
           </div>
+          <div class="col-lg-8 ">
+            <div class="all-blog-posts ">
+              <div class="row">
+
+                <% posts.forEach(function(post){%> 
+
+                <div class="col-lg-12 card" style="margin-bottom: 10px; background-color: white;">
+                  <div class="blog-post ">
+                    <div class="blog-thumb">
+                      <div>
+                        <img style="margin-top: 20px;"
+                        src=<%= post.image %>
+                        alt=""
+                      />
+                      </div>
+       
+                    </div>
+                    <div class="down-content">
+                      <div style ="text-align: center;">
+                      <span style ="text-align: center;"><%= post.category %></span>
+                      </div>
+                      <a href="/posts/<%= post.category %>/<%= post.title %>"  style ="text-align: center;"
+                        ><h4><%= post.title %></h4></a
+                      >
+                      <ul class="post-info"  style ="text-align: center;">
+                        <li><a href="/profile/<%= post.author._id %>"><%= post.author.name %></a></li>
+                        <li><a href="#"><%= post.date %></a></li>
+                      </ul>
+                      <p>
+                        <%= post.body %>
+                      </p>
+                      <div class="post-options">
+                        <div class="row">
+                          <div class="col-6">
+                            <ul class="post-tags">
+                              <li><i class="fa fa-tags"></i></li>
+                              <% post.tags.forEach(function(tag){%> 
+                                <li><a href="/tags/<%= tag %>" style="color: #5e5e5e;"><%= tag %></a></li>
+                              <% }) %>
+                            </ul>
+                          </div>
+                          
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <% }) %>
+
+                <div class="col-lg-12">
+                  <div class="main-button">
+                    <!-- <a href="blog.ejs">View All Posts</a> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+         
         </div>
       </div>
     </section>
