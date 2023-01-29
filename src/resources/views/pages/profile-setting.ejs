@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>داشبورد</title>
+    <link
+      href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css"
+      rel="stylesheet"
+      id="bootstrap-css"
+    />
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../../../public/assets/css/dashboard.css" />
+  </head>
+
+  <body>
+    <nav
+      class="navbar navbar-expand navbar-dark bg-primary"
+      style="background-color: #f48840 !important; height: 80px"
+    >
+      <a href="#menu-toggle" id="menu-toggle" class="navbar-brand"
+        ><span class="navbar-toggler-icon"></span
+      ></a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarsExample02"
+        aria-controls="navbarsExample02"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarsExample02">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="/"
+              >بازگشت به گیومه <span class="sr-only">(current)</span></a
+            >
+          </li>
+        </ul>
+        <form class="form-inline my-2 my-md-0"></form>
+      </div>
+    </nav>
+    <div id="wrapper" class="toggled">
+      <!-- Sidebar -->
+      <div id="sidebar-wrapper">
+        <ul class="sidebar-nav" style="margin-top: 15px; margin-right: 10px">
+          <li><a href="/dashboard">پیشخوان </a></li>
+          <li><a href="/a/create">افزودن پست جدید</a></li>
+          <li><a href="/">مطالب پیشین</a></li>
+          <!-- <li><a href="/">آخرین نظرات</a></li> -->
+          <li><a href="/">تنظیمات حساب کاربری</a></li>
+          <li><a href="/profile/<%= user._id %>">مشاهده پروفایل</a></li>
+          <li><a href="/">خروج از حساب حساب کاربری</a></li>
+        </ul>
+      </div>
+      <!-- /#sidebar-wrapper -->
+      <!-- Page Content -->
+      <div id="page-content-wrapper">
+        <div class="container-fluid">
+          <h2 style="margin-bottom: 30px"><%= user.name %> عزیز، خوش آمدید</h2>
+          <hr />
+          <% if (posts.length > 0 ){ %>
+          <h3 style="margin-top: 40px; margin-bottom: 130px">
+            آخرین پست های نوشته شده توسط شما :
+          </h3>
+
+          <div class="container">
+            <div class="row blog">
+              <div class="col-md-12">
+                <div
+                  id="blogCarousel"
+                  class="carousel slide container-blog"
+                  data-ride="carousel"
+                >
+                  <!-- Carousel items -->
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <div class="row">
+                        <% posts.forEach(function(post){%>
+
+                        <div class="col-md-4">
+                          <div class="item-box-blog">
+                            <div class="item-box-blog-image">
+                              <!--Date-->
+                              <div class="item-box-blog-date bg-blue-ui white">
+                                <span class="mon"><%= post.date %></span>
+                              </div>
+                              <!--Image-->
+                              <figure>
+                                <img
+                                  style="height: 150px; object-fit: cover"
+                                  alt=""
+                                  src="<%= post.image %>"
+                                />
+                              </figure>
+                            </div>
+                            <div class="item-box-blog-body">
+                              <!--Heading-->
+                              <div class="item-box-blog-heading">
+                                <a href="#" tabindex="0">
+                                  <h5 style="color: #f48840 !important">
+                                    <%= post.title %>
+                                  </h5>
+                                </a>
+                              </div>
+                              <!--Data-->
+                              <div
+                                class="item-box-blog-data"
+                                style="padding: px 15px"
+                              >
+                                <p>
+                                  نظرات : <i class="fa fa-comments-o"></i> <%=
+                                  post.comments %>
+                                </p>
+                              </div>
+                              <!--Text-->
+                              <div class="item-box-blog-text">
+                                <p><%= post.body %></p>
+                              </div>
+                              <div class="mt">
+                                <a
+                                  href="/a/edit/<%= post.title %>"
+                                  tabindex="0"
+                                  class="btn bg-blue-ui white read"
+                                  >ویرایش مقاله</a
+                                >
+                              </div>
+                              <!--Read More Button-->
+                            </div>
+                          </div>
+                        </div>
+
+                        <% }) %>
+                      </div>
+                      <!--.row-->
+                    </div>
+                  </div>
+                  <!--.carousel-inner-->
+                </div>
+                <!--.Carousel-->
+              </div>
+            </div>
+          </div>
+          <% } else { %>
+          <div class="blog-post card">
+            <div
+              class="down-content"
+              style="padding: 20px; position: relative; text-align: center"
+            >
+              <img
+                style="
+                  height: 350px;
+                  margin-bottom: 10px;
+                  margin-top: 10px;
+                  vertical-align: middle;
+                "
+                src="../../../../public/assets/images/nauthor.png"
+                alt=""
+              />
+
+              <p
+                style="
+                  text-align: center;
+                  border-bottom: none;
+                  padding: 20px;
+                  margin-top: 10px;
+                  margin-bottom: 10px;
+                "
+              >
+                <strong>
+                  شما هنوز هنوز پستی در گیومه ننوشته اید،
+                  <br />
+                  بعد از انتشار اولین پست، آن را در اینجا نمایش می‌دهیم
+                </strong>
+              </p>
+            </div>
+          </div>
+
+          <% } %>
+        </div>
+      </div>
+      <!-- /#page-content-wrapper -->
+    </div>
+    <!-- /#wrapper -->
+    <!-- Menu Toggle Script -->
+    <script>
+      $(function () {
+        $("#menu-toggle").click(function (e) {
+          e.preventDefault();
+          $("#wrapper").toggleClass("toggled");
+        });
+
+        $(window).resize(function (e) {
+          if ($(window).width() <= 768) {
+            $("#wrapper").removeClass("toggled");
+          } else {
+            $("#wrapper").addClass("toggled");
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

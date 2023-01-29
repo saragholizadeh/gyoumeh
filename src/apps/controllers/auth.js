@@ -168,3 +168,7 @@ exports.verificate = async (req, res) => {
     res.redirect("/auth/verification");
   }
 };
+
+exports.logout = async (req, res) =>{
+  res.clearCookie("login").redirect("/");
+}

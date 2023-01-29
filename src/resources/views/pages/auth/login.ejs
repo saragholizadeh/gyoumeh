@@ -1,124 +1,276 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>ورود به گیومه</title>
-    <%- include('../../partials/head'); %>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+
+    <link
+      rel="stylesheet"
+      href="../../../../../public/assets/auth-assets/css/owl.carousel.min.css"
+    />
+
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="../../../../../public/assets/auth-assets/css/bootstrap.min.css"
+    />
+
+    <!-- Style -->
+    <link
+      rel="stylesheet"
+      href="../../../../../public/assets/auth-assets/css/style.css"
+    />
+
     <style>
-      ul li {
-        margin-bottom: 15px;
-        padding-bottom: 15px;
-        border-bottom: 1px solid #eee;
+      header {
+        font-family: "byekan";
+        position: absolute;
+        z-index: 99999;
+        width: 100%;
+        height: 100px;
+        background-color: #f7f7f7;
+        -webkit-transition: all 0.3s ease-in-out 0s;
+        -moz-transition: all 0.3s ease-in-out 0s;
+        -o-transition: all 0.3s ease-in-out 0s;
+        transition: all 0.3s ease-in-out 0s;
+      }
+      header .navbar {
+        padding: 25px 0px;
+      }
+      .background-header .navbar {
+        padding: 17px 0px;
+      }
+      .background-header {
+        top: 0;
+        height: 80px;
+        position: fixed;
+        box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1);
+      }
+      .background-header .navbar-brand h2 {
+        color: #121212 !important;
+      }
+      .background-header .navbar-nav a.nav-link {
+        color: #1e1e1e !important;
+      }
+      .background-header .navbar-nav .nav-link:hover,
+      .background-header .navbar-nav .active > .nav-link,
+      .background-header .navbar-nav .nav-link.active,
+      .background-header .navbar-nav .nav-link.show,
+      .background-header .navbar-nav .show > .nav-link {
+        color: #f48840 !important;
+      }
+      .navbar .navbar-brand {
+        float: left;
+        margin-top: -12px;
+        outline: none;
+      }
+      .navbar .navbar-brand h2 {
+        color: #1e1e1e;
+        text-transform: uppercase;
+        font-size: 24px;
+        font-weight: 900;
+        -webkit-transition: all 0.3s ease 0s;
+        -moz-transition: all 0.3s ease 0s;
+        -o-transition: all 0.3s ease 0s;
+        transition: all 0.3s ease 0s;
+      }
+      .navbar .navbar-brand h2 em {
+        font-size: 44px;
+        font-style: normal;
+        color: #f48840;
+      }
+      #navbarResponsive {
+        z-index: 999;
+      }
+      .navbar-collapse {
+        text-align: center;
+      }
+      .navbar .navbar-nav .nav-item {
+        margin: 0px 15px;
+      }
+      .navbar .navbar-nav a.nav-link {
+        text-transform: capitalize;
+        font-size: 15px;
+        font-weight: 800;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        color: #1e1e1e;
+        transition: all 0.3s;
+      }
+      .navbar .navbar-nav .nav-link:hover,
+      .navbar .navbar-nav .active > .nav-link,
+      .navbar .navbar-nav .nav-link.active,
+      .navbar .navbar-nav .nav-link.show,
+      .navbar .navbar-nav .show > .nav-link {
+        color: #f48840;
+      }
+      .navbar .navbar-toggler-icon {
+        background-image: none;
+      }
+      .navbar .navbar-toggler {
+        border-color: #fff;
+        background-color: #f48840;
+        height: 46px;
+        outline: none;
+        border-radius: 0px;
+        position: absolute;
+        right: 30px;
+        top: 25px;
+      }
+      .navbar .navbar-toggler-icon:after {
+        content: "\f0c9";
+        color: #fff;
+        font-size: 18px;
+        line-height: 30px;
+        font-family: "byekan";
+      }
+      footer {
+        margin-top: 100px;
+        text-align: center;
+        background-color: #20232e;
+        padding: 60px 0px;
+      }
+
+      footer ul.social-icons {
+        padding-bottom: 60px;
+        margin-bottom: 60px;
+        border-bottom: 1px solid rgba(250, 250, 250, 0.15);
+      }
+
+      footer ul.social-icons li {
+        display: inline-block;
+        margin-right: 30px;
+      }
+
+      footer ul.social-icons li:after {
+        content: "|";
+        color: #fff;
+        margin-left: 30px;
+      }
+
+      footer ul.social-icons li:last-child {
+        margin-right: 0px;
+      }
+
+      footer ul.social-icons li:last-child::after {
+        display: none;
+      }
+
+      footer ul.social-icons li a {
+        font-size: 14px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: 500;
+        letter-spacing: 0.25px;
+        transition: all 0.3s;
+      }
+
+      footer ul.social-icons li a:hover {
+        color: #f48840;
+      }
+
+      footer p {
+        font-size: 13px;
+        text-transform: uppercase;
+        color: #fff;
+      }
+
+      footer p a {
+        color: #f48840;
+      }
+
+      footer p a:hover {
+        color: #f48840;
       }
     </style>
+    <title>ورود به گیومه</title>
   </head>
-
-  <body>
+  <body style="background-color: rgb(240, 239, 239);">
     <!-- ***** Preloader Start ***** -->
     <%- include('../../partials/preloader'); %>
 
     <!-- ***** Preloader End ***** -->
+    <header>
+      <nav class="navbar navbar-expand-lg">
+        <div class="container">
+          <% if (user) {%>
+          <div class="dropdown">
+            <a
+              class="btn btn-secondary"
+              href="#"
+              role="button"
+              id="dropdownMenuLink"
+              data-toggle="dropdown"
+              aria-expanded="false"
+              style="
+                background-color: #f7f7f7;
+                border: #f7f7f7;
+                font-size: 15px;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: #1e1e1e;
+                margin-top: 2px;
+                transition: all 0.3s;
+              "
+            >
+              <img
+                src="../../../../public/assets/images/avatar.png"
+                alt="Avatar"
+                class="avatar"
+                style="
+                  vertical-align: middle;
+                  width: 50px;
+                  height: 50px;
+                  border-radius: 50%;
+                "
+              />
+            </a>
 
-    <!-- Header -->
-    <%- include('../../partials/header'); %>
+            <div
+              class="dropdown-menu"
+              aria-labelledby="dropdownMenuLink"
+              style="
+                background-color: white;
+                border: white;
+                font-size: 15px;
+                text-decoration: dashed;
+                font-weight: 800;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+                color: #1e1e1e;
+                margin-top: 2px;
+                transition: all 0.3s;
+                text-align: center;
+              "
+            >
+              <a class="dropdown-item" href="/a/create"
+                ><strong>نوشتن پست جدید </strong></a
+              >
+              <hr />
 
+              <a class="dropdown-item" href="/profile/<%= user._id %>"
+                ><strong>مشاهده پروفایل کاربری</strong></a
+              >
+              <hr />
 
+              <a class="dropdown-item" href="/profile/setting"
+                ><strong>تنظیمات حساب کاربری</strong></a
+              >
+              <hr />
 
-    <div style="display: flex; margin: auto">
-      <div class="row" style="margin: auto; width: 1800px">
-        <img
-          style="width:40%; margin: auto"
-          src="../../../../../public/assets/images/login.png"
-          alt=""
-        />
-
-        <div style="margin-top: 150px; width: 40%">
-          <% if (messages.error) { %>
-          <div
-            class="alert alert-danger alert-dismissible fade show"
-            role="alert"
-            style="width: 382px"
-          >
-            <%- messages.error %>
-          </div>
-          <% } %>
-
-          <form
-            id="contact"
-            action="/auth/login"
-            method="post"
-            style="margin: auto"
-          >
-            <div class="row" style="display: block">
-              <div class="col-md-6 col-sm-12" style="direction: rtl">
-                <fieldset>
-                  <input
-                    style="
-                      width: 100%;
-                      height: 46px;
-                      border: 1px solid #eee;
-                      font-size: 13px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                      color: #7a7a7a;
-                      outline: none;
-                      padding: 0px 15px;
-                      margin-bottom: 30px;
-                      border-radius: 5px;
-                    "
-                    name="email"
-                    type="text"
-                    id="email"
-                    placeholder="ایمیل"
-                  />
-                </fieldset>
-              </div>
-              <div class="col-md-6 col-sm-12" style="direction: rtl">
-                <fieldset>
-                  <input
-                    style="
-                      width: 100%;
-                      height: 46px;
-                      border: 1px solid #eee;
-                      font-size: 13px;
-                      text-transform: uppercase;
-                      font-weight: 500;
-                      color: #7a7a7a;
-                      outline: none;
-                      padding: 0px 15px;
-                      margin-bottom: 30px;
-                      border-radius: 5px;
-                    "
-                    name="password"
-                    type="password"
-                    id="password"
-                    placeholder="رمز عبور"
-                  />
-                 
-                </fieldset>
-              </div>
-
-              <div class="col-md-6 col-sm-12" style="direction: rtl">
-                <button
-                  type="submit"
-                  id="form-submit"
-                  style="
-                    background-color: #20232e;
-                    color: #eee;
-                    width: 100%;
-                    height: 45px;
-                    border-radius: 5px;
-                    cursor: pointer;
-                  "
-                >
-                  ورود
-                </button>
-                <br />
-                <br />
-              </div>
+              <a class="dropdown-item" href="/auth/logout"
+                ><strong>خروج</strong></a
+              >
             </div>
-          </form>
-
+          </div>
+          <% } else { %>
           <div
+            class="userLogin button js-userLogin"
             style="
               cursor: pointer;
               display: inline-block;
@@ -130,66 +282,182 @@
             <span class="btn" style="align-items: center; display: inline-flex">
               <a
                 class="btn-text"
-                href="/auth/register"
-                title="ثبت نام"
-                style="
-                 background-color: #f48840;
-                  border-radius: 5px;
-                  color: #fff !important;
-                  margin-right: 10px;
-                  padding: 5px 25px;
-                  width: 50%;
-                  height: 40px;
-                "
-                >ثبت نام</a
+                href="/auth/login"
+                title="ورود به حساب کاربری"
+                style="color: #107abe !important; padding-right: 20px"
+                >ورود</a
               >
               <a
                 class="btn-text navbar-signup-button"
                 href="/auth/register"
                 title="ثبت نام در ویرگول"
                 style="
-                  background-color: #f48840;
+                  background-color: #107abe;
                   border-radius: 5px;
                   color: #fff !important;
                   margin-right: 15px;
                   padding: 5px 25px;
-                  width: 49%;
-                  height: 40px;
-                  text-align: center;
                 "
-                >فراموشی رمز عبور  </a
+                >ثبت نام</a
               >
             </span>
           </div>
-                    
+          <% } %>
+
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-toggle="collapse"
+            data-target="#navbarResponsive"
+            aria-controls="navbarResponsive"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarResponsive">
+            <ul class="navbar-nav ml-auto">
+              <li class="nav-item active">
+                <a
+                  class="nav-link"
+                  href="/"
+                  style="margin-top: -10px; font-size: 25px"
+                  >« گیومه »</a
+                >
+              </li>
+              <li class="nav-item active">
+                <a
+                  class="nav-link"
+                  href="/a/create"
+                  style="margin-bottom: -10px; color: #107abe"
+                  >شروع به نوشتن کنید
+                </a>
+              </li>
+              <li>
+                <div class="dropdown">
+                  <a
+                    class="btn btn-secondary dropdown-toggle"
+                    href="#"
+                    role="button"
+                    id="dropdownMenuLink"
+                    data-toggle="dropdown"
+                    aria-expanded="false"
+                    style="
+                      background-color: #f7f7f7;
+                      border: #f7f7f7;
+                      font-size: 15px;
+                      font-weight: 800;
+                      text-transform: uppercase;
+                      letter-spacing: 0.5px;
+                      color: #1e1e1e;
+                      margin-top: 2px;
+                      transition: all 0.3s;
+                    "
+                  >
+                    دسته‌بندی‌ها
+                  </a>
+
+                  <div
+                    class="dropdown-menu"
+                    aria-labelledby="dropdownMenuLink"
+                    style="
+                      background-color: white;
+                      border: white;
+                      font-size: 15px;
+                      font-weight: 800;
+                      text-transform: uppercase;
+                      letter-spacing: 0.5px;
+                      color: #1e1e1e;
+                      margin-top: 2px;
+                      transition: all 0.3s;
+                      text-align: center;
+                    "
+                  >
+                    <% categories.forEach(function(category){%>
+
+                    <a class="dropdown-item" href="/category/<%= category %>"
+                      ><strong><%= category %></strong></a
+                    >
+
+                    <% }) %>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </header>
+
+    <div class="content" style="padding-top: 160px; font-family: byekan">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6">
+            <img
+              src="../../../../../public/assets/images/Mobile login-cuate.svg"
+              alt="Image"
+              class="img-fluid"
+            />
+          </div>
+          <div class="col-md-6 contents">
+            
+            <div class="row justify-content-center">
+              <div class="col-md-8" style="direction: rtl; text-align: center;margin-top: 100px;">
+                <div class="mb-4">
+                  <p class="mb-4"></p>
+                </div>
+                <% if (messages.error) { %>
+                  <div
+                    class="alert alert-danger alert-dismissible fade show"
+                    role="alert"
+                    style="text-align: center;"
+                  >
+                    <%- messages.error %>
+                  </div>
+                  <% } %>
+                <form action="/auth/login" method="post">
+                  <div class="form-group first" style="background-color: white; border-radius:5px ">
+                    <label for="email">ایمیل</label>
+                    <input type="text" class="form-control" id="email" name="email"
+                    type="text"/>
+                  </div>
+                  <div class="form-group last mb-4" style="background: white; margin-top:20px ;border-radius:5px ">
+                    <label for="password">رمز عبور</label>
+                    <input type="password" class="form-control"    name="password"
+                    type="password"
+                    id="password" />
+                  </div>
+
+                  <input
+                    type="submit"
+                    value="ورود"
+                    class="btn btn-block btn-primary"
+                    style="background-color: #212529; border-color: #212529;"
+                  />
+
+                  <div
+                    class="d-flex mb-5 align-items-center"
+                    style="margin-top: 20px"
+                  >
+                    <span class="ml-auto"
+                      ><a href="#" class="forgot-pass"
+                        >فراموشی رمز عبور</a
+                      ></span
+                    >
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <footer><%- include('../../partials/footer'); %></footer>
+    <footer style=""><%- include('../../partials/footer'); %></footer>
 
-    <!-- Bootstrap core JavaScript -->
-    <script src="../../../../public/vendor/jquery/jquery.min.js"></script>
-    <script src="../../../../public/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Additional Scripts -->
-    <script src="../../../../public/assets/js/custom.js"></script>
-    <script src="../../../../public/assets/js/owl.js"></script>
-    <script src="../../../../public/assets/js/slick.js"></script>
-    <script src="../../../../public/assets/js/isotope.js"></script>
-    <script src="../../../../public/assets/js/accordions.js"></script>
-
-    <script language="text/Javascript">
-      cleared[0] = cleared[1] = cleared[2] = 0; //set a cleared flag for each field
-      function clearField(t) {
-        //declaring the array outside of the
-        if (!cleared[t.id]) {
-          // function makes it static and global
-          cleared[t.id] = 1; // you could use true and false, but that's more typing
-          t.value = ""; // with more chance of typos
-          t.style.color = "#fff";
-        }
-      }
-    </script>
+    <script src="../../../../../public/assets/auth-assets/js/jquery-3.3.1.min.js"></script>
+    <script src="../../../../../public/assets/auth-assets/js/popper.min.js"></script>
+    <script src="../../../../../public/assets/auth-assets/js/bootstrap.min.js"></script>
+    <script src="../../../../../public/assets/auth-assets/js/main.js"></script>
   </body>
 </html>
