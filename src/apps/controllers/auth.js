@@ -169,6 +169,16 @@ exports.verificate = async (req, res) => {
   }
 };
 
-exports.logout = async (req, res) =>{
+exports.forgetPassword = async (req, res) => {
+  res.render("/pages/auth/forget-pass");
+};
+
+exports.sendForgetPassEmail = async (req, res) => {
+  //sent pass to email
+  //save new field to user (temp_pass) => Object = {exp & pass}
+  res.render("/pages/auth/forget-pass-email")
+};
+
+exports.logout = async (req, res) => {
   res.clearCookie("login").redirect("/");
-}
+};

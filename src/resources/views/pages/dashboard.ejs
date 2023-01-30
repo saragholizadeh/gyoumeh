@@ -50,9 +50,9 @@
           <li><a href="/a/create">افزودن پست جدید</a></li>
           <li><a href="/">مطالب پیشین</a></li>
           <!-- <li><a href="/">آخرین نظرات</a></li> -->
-          <li><a href="/">تنظیمات حساب کاربری</a></li>
+          <li><a href="/dashboard/setting">تنظیمات حساب کاربری</a></li>
           <li><a href="/profile/<%= user._id %>">مشاهده پروفایل</a></li>
-          <li><a href="/">خروج از حساب حساب کاربری</a></li>
+          <li><a href="/auth/logout">خروج از حساب حساب کاربری</a></li>
         </ul>
       </div>
       <!-- /#sidebar-wrapper -->
@@ -137,10 +137,17 @@
                       <!--.row-->
                     </div>
                   </div>
+
+                    <div style="width: 100%; margin-top:10px; text-align: center;">
+                      <a href="/dashboard/myposts" tabindex="0" class="btn bg-blue-ui white read" style="background-color:#f48840 !important; height: 40px;"
+                        >مشاهده نوشته های من در گیومه
+                      </a>
+                    </div>
+                 
                   <!--.carousel-inner-->
                 </div>
-                <!--.Carousel-->
               </div>
+              <!--.Carousel-->
             </div>
           </div>
           <% } else { %>

@@ -91,7 +91,7 @@ exports.getPost = async (req, res) => {
     title: post.title,
     date: solarDate.timestampToSolar(post.created_at),
     category: post.category,
-    author: author.name,
+    author: author,
     tags: post.tags,
     comments: comments,
     body: post.body,
@@ -266,7 +266,7 @@ exports.profile = async (req, res) => {
         $natural: -1,
       });
 
-      var postsArr = []; 
+      var postsArr = [];
       if (posts) {
         for (let i = 0; i < posts.length; i++) {
           var post = posts[i];
@@ -286,9 +286,8 @@ exports.profile = async (req, res) => {
           };
           postsArr.push(obj);
         }
-      } 
+      }
       res.render("pages/profile", { user, posts: postsArr });
-
     } else {
       res.render("pages/not-found");
     }
@@ -324,6 +323,9 @@ exports.profile = async (req, res) => {
   // res.render("pages/profile", { user, posts: postsArr });
 };
 
+exports.getSetting = async (req, res) => {};
+
+exports.updateUser = async (req, res) => {};
 exports.notFound = (req, res) => {
   res.render("pages/not-found");
 };

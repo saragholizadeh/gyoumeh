@@ -28,7 +28,7 @@
       style="background-color: rgb(240, 239, 239)"
     >
       <div class="container">
-        <div class="row">
+        <div class="row" style="direction: rtl;">
           <div class="col-lg-8" style="background-color: rgb(255, 255, 255)">
             <div class="all-blog-posts">
               <div class="row card">
@@ -44,24 +44,26 @@
                     <div class="down-content">
                       <div style="text-align: center">
                         <span><%= post.category %></span>
-                        <a href="post-details.html"
+                        <a href="/posts/<%= post.category %>/<%= post.title %>"
                           ><h4><%= post.title %></h4></a
                         >
                         <ul class="post-info">
-                          <li><a href="#"><%= post.author %></a></li>
+                          <li><a href="/profile/<%= post.author._id %>""><%= post.author.name %></a></li>
                           <li><a href="#"><%= post.date %></a></li>
                           <li><a href="#"><%= post.comments.length %></a></li>
                         </ul>
                       </div>
 
-                      <p><%= post.body %></p>
+                      <p style="white-space:  pre-line;">
+                    <%= post.body %></p>
+
                       <div class="post-options" style="text-align: center;">
                         <div  style="text-align: center;">
                           <div style="text-align: center;">
                             <ul class="post-tags"  style="text-align: center;">
                               <li><i class="fa fa-tags" ></i></li>
                               <% post.tags.forEach(function(tag){%>
-                              <li><a href="#"><%= tag %></a></li>
+                              <li><a href="/tags/<%= tag %>"><%= tag %></a></li>
                               <% }) %>
                             </ul>
                           </div>

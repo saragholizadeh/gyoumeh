@@ -16,7 +16,8 @@ router.get("/verification", notLoggedIn, controller.verification);
 router.post("/verification", notLoggedIn, controller.verificate);
 
 router.get("/logout", isLoggedIn, controller.logout);
-// router.get("/forgetPassword", controller.forgetPassword);
-// routet.post("/forgetPassword/email", controller.sendEmail);
+
+router.get("/forgetPassword", notLoggedIn, controller.forgetPassword);
+router.post("/forgetPassword", notLoggedIn, controller.sendForgetPassEmail );
 
 module.exports = router;
