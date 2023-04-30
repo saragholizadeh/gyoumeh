@@ -1,7 +1,7 @@
 # Gyoumeh
 
 Gyoumeh is my Bachelor's thesis project, a mini blog platform where users can create their own profiles and share their articles with others.<br>
-They can also can comment on each other's posts.
+They can also comment on each other's posts.
 
 In Gyoumeh, admins can create their favorite categories as many as they want, and then authors can use those categories to publish their articles.<br>
 Additionally, all users can access the articles through the pre-defined categories or by following the tags added by the authors to their posts.<br>
